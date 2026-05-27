@@ -1,8 +1,15 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException 
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel 
 import random 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5500", "https://beatrizneves1403.github.io"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class AnalysisResult(BaseModel):
     filename: str
